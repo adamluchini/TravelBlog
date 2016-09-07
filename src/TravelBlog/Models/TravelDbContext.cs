@@ -9,11 +9,20 @@ namespace TravelBlogPost.Models
 {
     public class TravelDbContext : DbContext
     {
-        public virtual DbSet<Location> Locations { get; set; }
-        public virtual DbSet<Experience> Experiences { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public TravelDbContext(DbContextOptions<TravelDbContext> options)
+            :base(options)
         {
-            options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TravelDb;integrated security=True");
+        }
+
+        public TravelDbContext()
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
         }
     }
 }

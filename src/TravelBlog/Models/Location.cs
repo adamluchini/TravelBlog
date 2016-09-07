@@ -8,14 +8,9 @@ using TravelBlogPost.Models;
 
 namespace TravelBlog.Models
 {
-    [Table("Locations")]
+    [Table("Categories")]
     public class Location
     {
-        public Location()
-        {
-            this.Experiences = new HashSet<Experience>();
-        }
-
         [Key]
         public int LocationId { get; set; }
         public string Destination { get; set; }
