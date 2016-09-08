@@ -8,7 +8,7 @@ using TravelBlogPost.Models;
 
 namespace TravelBlog.Models
 {
-    [Table("Categories")]
+    [Table("Locations")]
     public class Location
     {
         [Key]

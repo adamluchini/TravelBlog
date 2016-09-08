@@ -8,14 +8,29 @@ using TravelBlogPost.Models;
 namespace TravelBlog.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20160907232144_MadeTablesPluralTheyWereAnyway")]
-    partial class MadeTablesPluralTheyWereAnyway
+    [Migration("20160908174123_AddManyToMany")]
+    partial class AddManyToMany
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("TravelBlog.Models.Experiences_Persons", b =>
+                {
+                    b.Property<int>("ExperienceId");
+
+                    b.Property<int>("PersonId");
+
+                    b.HasKey("ExperienceId", "PersonId");
+
+                    b.HasIndex("ExperienceId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Experiences_Persons");
+                });
 
             modelBuilder.Entity("TravelBlog.Models.Location", b =>
                 {
@@ -26,7 +41,19 @@ namespace TravelBlog.Migrations
 
                     b.HasKey("LocationId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("TravelBlog.Models.Person", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("PersonId");
+
+                    b.ToTable("Person");
                 });
 
             modelBuilder.Entity("TravelBlogPost.Models.Experience", b =>
@@ -43,6 +70,19 @@ namespace TravelBlog.Migrations
                     b.HasIndex("LocationId");
 
                     b.ToTable("Experiences");
+                });
+
+            modelBuilder.Entity("TravelBlog.Models.Experiences_Persons", b =>
+                {
+                    b.HasOne("TravelBlogPost.Models.Experience")
+                        .WithMany()
+                        .HasForeignKey("ExperienceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("TravelBlog.Models.Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TravelBlogPost.Models.Experience", b =>

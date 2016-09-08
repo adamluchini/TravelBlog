@@ -8,7 +8,7 @@ using TravelBlogPost.Models;
 namespace TravelBlog.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20160907231530_Initial")]
+    [Migration("20160908161210_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
