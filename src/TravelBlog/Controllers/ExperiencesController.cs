@@ -18,9 +18,10 @@ namespace TravelBlogPost.Controllers
         }
         public IActionResult Index()
         {
+            //return View(db.Persons.ToList());
             return View(db.Experiences.Include(experiences => experiences.Location).ToList());
         }
-        
+
         public IActionResult Details(int id)
         {
             var thisExperience = db.Experiences.FirstOrDefault(experiences => experiences.ExperienceId == id);

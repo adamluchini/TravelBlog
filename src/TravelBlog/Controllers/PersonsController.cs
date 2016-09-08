@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TravelBlogPost.Models;
 using TravelBlog.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace TravelBlog.Controllers
 {
@@ -19,7 +20,9 @@ namespace TravelBlog.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View(db.Persons.ToList());
+
+            //return View(db.Persons.Include(persons => persons.Name).ToList());
         }
 
         public IActionResult CreatePerson()
