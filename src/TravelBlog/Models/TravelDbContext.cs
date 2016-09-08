@@ -11,6 +11,10 @@ namespace TravelBlogPost.Models
     {
         public DbSet<Location> Locations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Experiences_Persons> Experiences_Persons { get; set; }
+
+
         public TravelDbContext(DbContextOptions<TravelDbContext> options)
             :base(options)
         {

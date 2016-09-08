@@ -1,0 +1,17 @@
+﻿@model TravelBlog.Models.Person
+
+@{
+    ViewData["Title"] = "Add new Travel Partner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Add Partner</h2>
+<hr />
+<h4>Add a new travel partner</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    <input type="submit" value="Add new person" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
